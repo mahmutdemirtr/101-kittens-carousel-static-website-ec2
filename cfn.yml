@@ -19,17 +19,17 @@ Resources:
       UserData: 
       Fn::Base64: |
             #! /bin/bash
-sudo yum update -y
-sudo yum install httpd -y
-FOLDER="https://raw.githubusercontent.com/mahmutdemirtr/101-kittens-carousel-static-website-ec2/main/static-web"
-            cd /var/www/html
-            sudo wget ${FOLDER}/index.html
-            sudo wget ${FOLDER}/cat0.jpg
-            sudo wget ${FOLDER}/cat1.jpg
-            sudo wget ${FOLDER}/cat2.jpg
-            sudo wget ${FOLDER}/cat3.png
-            systemctl start httpd
-            systemctl enable httpd
+              sudo yum update -y
+              sudo yum install httpd -y
+              FOLDER="https://raw.githubusercontent.com/mahmutdemirtr/101-kittens-carousel-static-website-ec2/main/static-web"
+              cd /var/www/html
+              sudo wget ${FOLDER}/index.html
+              sudo wget ${FOLDER}/cat0.jpg
+              sudo wget ${FOLDER}/cat1.jpg
+              sudo wget ${FOLDER}/cat2.jpg
+              sudo wget ${FOLDER}/cat3.png
+              sudo systemctl start httpd
+              sudo systemctl enable httpd
      
 
   MySecGrp:
