@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: |
   This my Cfn template for EC2 with Security Group 
-  
+
 Resources:
 
   MyWebServer:
@@ -12,26 +12,24 @@ Resources:
       KeyName: firstkey
       SecurityGroupIds: 
         - !Ref MySecGrp
-
       Tags: 
         - Key: Name
           Value: !Sub Osvaldo ${AWS::StackName}
-      UserData: 
-       Fn::Base64: |
+      UserData:
+        Fn::Base64: |
             #! /bin/bash
-              sudo yum update -y
-              sudo yum install httpd -y
-              FOLDER="https://raw.githubusercontent.com/mahmutdemirtr/101-kittens-carousel-static-website-ec2/main/static-web"
-              cd /var/www/html
-              sudo wget ${FOLDER}/index.html
-              sudo wget ${FOLDER}/cat0.jpg
-              sudo wget ${FOLDER}/cat1.jpg
-              sudo wget ${FOLDER}/cat2.jpg
-              sudo wget ${FOLDER}/cat3.png
-              sudo systemctl start httpd
-              sudo systemctl enable httpd
+            yum update -y
+            yum install httpd -y
+            FOLDER="https://raw.githubusercontent.com/mahmutdemirtr/101-kittens-carousel-static-website-ec2/main/static-web"
+            cd /var/www/html
+            wget ${FOLDER}/index.html
+            wget ${FOLDER}/cat0.jpg
+            wget ${FOLDER}/cat1.jpg
+            wget ${FOLDER}/cat2.jpg
+            wget ${FOLDER}/cat3.png
+            systemctl start httpd
+            systemctl enable httpd
      
-
   MySecGrp:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -52,4 +50,3 @@ Outputs:
     Value: !Sub 
       - http://${PublicAddress}
       - PublicAddress: !GetAtt MyWebServer.PublicDnsName
- 
